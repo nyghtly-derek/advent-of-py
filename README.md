@@ -1,3 +1,3 @@
 # Advent of Python
 
-Python solutions for the [Advent of Code](http://adventofcode.com/) challenges. 
+All solutions are original. To see the problems, visit [Advent of Code](http://adventofcode.com/). Every problem includes two parts which each require a unique approach. 
