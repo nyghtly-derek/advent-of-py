@@ -1,3 +1,5 @@
+""" solution for problem 3a """
+
 import math
 
 level_totals = {

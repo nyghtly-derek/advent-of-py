@@ -1,3 +1,5 @@
+""" solutions for problems 1a and 1b """
+
 def solve_captcha_a(data):
     curr = 0
     next = 0

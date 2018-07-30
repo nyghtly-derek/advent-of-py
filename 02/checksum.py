@@ -1,3 +1,5 @@
+""" solution for problem 2a """
+
 def build_table(file, table):
     for line in file:
         table.append(line.split())
