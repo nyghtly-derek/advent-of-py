@@ -1,3 +1,3 @@
 # Advent of Python
 
-All solutions are original. To test your own mettle, check out [Advent of Code](http://adventofcode.com/). 
+All solutions are original. To see text for the problems, visit [Advent of Code](http://adventofcode.com/). 
