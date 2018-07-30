@@ -12,7 +12,7 @@ def find_row_diff(row):
             min = int(num)
     return max - min
 
-path = "./myinput.txt"
+path = "data/myinput.txt"
 myfile = open(path, 'r')
 
 table = []
