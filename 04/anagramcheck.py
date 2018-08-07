@@ -14,9 +14,11 @@ For example:
 Under this new system policy, how many passphrases are valid?
 """
 
-def build_data(file, table):
+def build_data(file):
+    data = []
     for line in file:
-        passphrases.append(line.split())
+        data.append(line.split())
+    return data
 
 def is_valid(passphrase):
     used_words = set()
@@ -42,8 +44,7 @@ def print_data(dataset):
 path = "data/myinput.txt"
 myfile = open(path, "r")
 
-passphrases = []
-build_data(myfile, passphrases)
+passphrases = build_data(myfile)
 
 print("for dataset {}:".format(path))
 print_data(passphrases)
