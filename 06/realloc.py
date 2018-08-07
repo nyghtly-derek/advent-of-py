@@ -21,6 +21,14 @@ For example, imagine a scenario with only four memory banks:
 At this point, we've reached a state we've seen before: 2 4 1 2 was already seen. The infinite loop is detected after the fifth block redistribution cycle, and so the answer in this example is 5.
 
 Given the initial block counts in your puzzle input, how many redistribution cycles must be completed before a configuration is produced that has been seen before?
+
+--- Problem 6B ---
+
+Out of curiosity, the debugger would also like to know the size of the loop: starting from a state that has already been seen, how many block redistribution cycles must be performed before that same state is seen again?
+
+In the example above, 2 4 1 2 is seen again after four cycles, and so the answer in that example would be 4.
+
+How many cycles are in the infinite loop that arises from the configuration in your puzzle input?
 """
 
 def build_data(file):
@@ -41,7 +49,7 @@ def balance_mem(memory):
     blocks_to_give = memory[ihigh]
     memory[ihigh] = 0
     give_blocks(memory, blocks_to_give, ihigh)
-    print("\t{}".format(memory))
+    #print("\t{}".format(memory))
 
 def get_index_highest(memory):
     highest = 0
@@ -69,7 +77,8 @@ def find_repeat_cycle(memory):
         balance_mem(memory)
         num_cycles += 1
         if memory in past_memory:
-            return num_cycles
+            cycles_between = num_cycles - past_memory.index(memory)
+            return (num_cycles, cycles_between)
         else:
             past_memory.append(memory.copy())
 
@@ -81,4 +90,6 @@ data_to_int(membanks)
 print("for dataset {}:".format(path))
 print_data(membanks)
 print("reallocating memory...")
-print("num cycles until repeated memory:", find_repeat_cycle(membanks))
+repeat = find_repeat_cycle(membanks)
+print("num cycles until repeated memory:", repeat[0])
+print("num cycles between repeated memory:", repeat[1])
