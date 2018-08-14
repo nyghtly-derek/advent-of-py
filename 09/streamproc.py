@@ -1,7 +1,6 @@
 def build_data(file):
-    data = []
-    for line in file:
-        data = line.split()
+    data = file
+    file.close()
     return data
 
 def print_data(dataset):
