@@ -77,6 +77,7 @@ def build_data(file):
         for i in range(len(program_data)):
             program_data[i] = regex.sub('', program_data[i])
         data.append(program_data)
+    file.close()
     return data
 
 def print_data(dataset):

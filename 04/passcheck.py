@@ -18,6 +18,7 @@ def build_data(file):
     data = []
     for line in file:
         data.append(line.split())
+    file.close()
     return data
 
 def is_valid(passphrase):

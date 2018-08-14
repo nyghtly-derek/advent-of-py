@@ -13,6 +13,7 @@ def build_data(file):
     for line in file:
         jumpnum = int(line)
         data.append(jumpnum)
+    file.close()
     return data
 
 def print_data(datalist):

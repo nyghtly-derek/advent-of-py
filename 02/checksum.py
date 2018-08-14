@@ -23,6 +23,7 @@ What is the checksum for the spreadsheet in your puzzle input?
 def build_table(file, table):
     for line in file:
         table.append(line.split())
+    file.close()
 
 def find_row_diff(row):
     max = int(row[0])

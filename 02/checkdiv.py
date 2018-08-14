@@ -25,6 +25,7 @@ What is the sum of each row's result in your puzzle input?
 def build_table(file, table):
     for line in file:
         table.append(line.split())
+    file.close()
 
 def find_row_div(row):
     for i,num1 in enumerate(row):
