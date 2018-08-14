@@ -21,6 +21,7 @@ def remove_canceled(stream):
     return new_stream
     
 def remove_garbage(stream):
+    total_rmvd = 0
     rm_from = 0
     opened = False
     rm_to = 0
@@ -44,7 +45,8 @@ def remove_garbage(stream):
     garbage_index.reverse()
     for rm_i in garbage_index:
         stream = stream[:rm_i[0]] + stream[rm_i[1]+1:]
-    return stream
+        total_rmvd += (rm_i[1] - rm_i[0] - 1)
+    return (stream, total_rmvd)
 
 def calc_score(stream):
     total = 0
@@ -72,11 +74,14 @@ stream = remove_canceled(stream)
 print("after canceling:")
 print_data(stream)
 
-stream = remove_garbage(stream)
+stream_after_garbage = remove_garbage(stream)
+stream = stream_after_garbage[0]
+total_removed = stream_after_garbage[1]
 
 print("after tossing garbage:")
 print_data(stream)
 
 score = calc_score(stream)
 
-print("\ngroup score is {}\n".format(score))
+print("group score is {}\n".format(score))
+print("amount garbage removed is {}\n".format(total_removed))
