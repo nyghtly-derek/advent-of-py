@@ -46,6 +46,17 @@ def remove_garbage(stream):
         stream = stream[:rm_i[0]] + stream[rm_i[1]+1:]
     return stream
 
+def calc_score(stream):
+    total = 0
+    level = 0
+    for char in stream:
+        if char == '{':
+            level += 1
+        elif char == '}':
+            total += level
+            level -=1
+    return total
+
 path = "data/myinput.txt"
 
 print("for dataset {}:".format(path))
@@ -64,5 +75,8 @@ print_data(stream)
 stream = remove_garbage(stream)
 
 print("after tossing garbage:")
-
 print_data(stream)
+
+score = calc_score(stream)
+
+print("\ngroup score is {}\n".format(score))
