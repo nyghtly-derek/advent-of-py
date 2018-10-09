@@ -1,8 +1,9 @@
-def build_data(file):
+def build_data(filepath):
+    myfile = open(path, "r")
     data = []
-    for line in file:
+    for line in myfile:
         data = line.split()
-    file.close()
+    myfile.close()
     return data
 
 def print_data(dataset):
@@ -10,8 +11,7 @@ def print_data(dataset):
         print("\t{}".format(elem))
     
 path = "data/easy.txt"
-myfile = open(path, "r")
-data = build_data(myfile)
+data = build_data(filepath)
 
 print("for dataset {}:".format(path))
 print_data(data)
