@@ -2,7 +2,7 @@ import pprint as pp
 from const import COMBOS, CANCEL
 
 def build_data(filepath):
-    myfile = open(path, "r")
+    myfile = open(filepath, "r")
     data = []
     for line in myfile:
         data = line.split(',')
@@ -25,15 +25,46 @@ def update_path(latest_dir, path):
     return path
 
 def condense_path(path):
+    if len(path) == 0:
+        return (False, path)
     latest_dir = path[-1]
-    #for direction in reversed(path[:-1]):
-    #    if  
+    for i, direction in enumerate(path[:-1]):
+        if direction + latest_dir in CANCEL:
+            newpath = path[:i] + path[i+1:-1]
+            return (False, newpath) 
+        elif direction + latest_dir in COMBOS:
+            combo = COMBOS[direction + latest_dir]
+            newpath = path[:i] + path[i+1:-1]
+            newpath.append(combo) # combo will be used in next round of condensing
+            return (True, newpath)
     return (False, path)
     
-path = "data/test1.txt"
-data = build_data(path)
-pp.pprint(data)
-shortest_path = find_shortest_path(data)
-pp.pprint(shortest_path)
+# declare file paths
+my_input_path = 'data/myinput.txt'
+test1_path = 'data/test1.txt'
+test2_path = 'data/test2.txt'
+test3_path = 'data/test3.txt'
+test4_path = 'data/test4.txt'
+test5_path = 'data/test5.txt'
+
+# load in data
+my_input_data = build_data(my_input_path)
+test1_data = build_data(test1_path)
+test2_data = build_data(test2_path)
+test3_data = build_data(test3_path)
+test4_data = build_data(test4_path)
+test5_data = build_data(test5_path)
+
+# test
+assert find_shortest_path(test1_data) == ['ne', 'ne', 'ne']
+assert find_shortest_path(test2_data) == []
+assert find_shortest_path(test3_data) == ['se', 'se']
+assert find_shortest_path(test4_data) == ['s', 's', 'sw']
+
+# run
+shortest_path = find_shortest_path(my_input_data)
+print(shortest_path)
+print("length of path", len(shortest_path))
+
 
 
