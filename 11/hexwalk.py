@@ -11,17 +11,18 @@ def build_data(filepath):
 
 def find_shortest_path(opath):
     short_path = []
+    furthest_traveled = 0
     for direction in opath:
         short_path = update_path(direction, short_path)
-    return short_path
+        if len(short_path) > furthest_traveled:
+            furthest_traveled = len(short_path)
+    return short_path, furthest_traveled
 
 def update_path(latest_dir, path):
     path.append(latest_dir)
     condensing = True
     while condensing:
-        result = condense_path(path)
-        condensing = result[0]
-        path = result[1]
+        condensing, path = condense_path(path)
     return path
 
 def condense_path(path):
@@ -35,7 +36,7 @@ def condense_path(path):
         elif direction + latest_dir in COMBOS:
             combo = COMBOS[direction + latest_dir]
             newpath = path[:i] + path[i+1:-1]
-            newpath.append(combo) # combo will be used in next round of condensing
+            newpath.append(combo) # combo will be available in next round of condensing
             return (True, newpath)
     return (False, path)
     
@@ -56,15 +57,16 @@ test4_data = build_data(test4_path)
 test5_data = build_data(test5_path)
 
 # test
-assert find_shortest_path(test1_data) == ['ne', 'ne', 'ne']
-assert find_shortest_path(test2_data) == []
-assert find_shortest_path(test3_data) == ['se', 'se']
-assert find_shortest_path(test4_data) == ['s', 's', 'sw']
+assert find_shortest_path(test1_data)[0] == ['ne', 'ne', 'ne']
+assert find_shortest_path(test2_data)[0] == []
+assert find_shortest_path(test3_data)[0] == ['se', 'se']
+assert find_shortest_path(test4_data)[0] == ['s', 's', 'sw']
 
 # run
-shortest_path = find_shortest_path(my_input_data)
-print(shortest_path)
-print("length of path", len(shortest_path))
+shortest_path, furthest_traveled = find_shortest_path(my_input_data)
+#print(shortest_path)
+print("length of shortest path", len(shortest_path))
+print("furthest traveled", furthest_traveled)
 
 
 
