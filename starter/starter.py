@@ -4,7 +4,7 @@ def build_data(path):
 	data = []
 	with open(path, 'r') as myfile:
 		for line in myfile:
-	    		data.append(line.rstrip())
+			data.append(line.rstrip())
 	return data
     
 path = "data/easy.txt"
