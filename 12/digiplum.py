@@ -48,8 +48,6 @@ How many groups are there in total?
 
 """
 
-import pprint as ppr
-
 def read_plumbing_data(path):
 	connected_sets = []
 	with open(path, 'r') as myfile:
@@ -98,7 +96,5 @@ connections = read_plumbing_data(path)
 num_with_zero = num_connected_to_program_zero(connections)
 
 print(f'-- for dataset {path} --')
-#print('connected sets are:')
-#ppr.pprint(connections)
 print(f'number of programs in zero group: \n-> {num_with_zero}')
 print(f'total number of separate groups: \n-> {len(connections)}')
