@@ -39,7 +39,6 @@ def traverse_firewall(picosecond, firewall_map, max_depth):
 	caught = False
 	while depth_traveled <= max_depth:
 		if packet_detected(picosecond, depth_traveled, firewall_map):
-			#print(f'packet detected! \n-> picosecond:\t {picosecond}')
 			severity += get_severity(depth_traveled, firewall_map)
 			caught = True
 		picosecond += 1
@@ -50,7 +49,6 @@ def find_vulnurability(picosecond, firewall_map, max_depth):
 	depth_traveled = 0
 	while depth_traveled <= max_depth:
 		if packet_detected(picosecond, depth_traveled, firewall_map):
-			#print(f'packet detected! \n-> picosecond:\t {picosecond}')
 			return False
 		picosecond += 1
 		depth_traveled += 1
@@ -72,11 +70,9 @@ vulnurability_found = False
 try:
 	while not vulnurability_found:
 		picosecond += 1
-		if picosecond % 1000000 == 0:
-			print(f'checking for vulnurability at picosecond {picosecond}')
 		vulnurability_found = find_vulnurability(picosecond, firewall_map, max_depth)
 	print('vulnurability found!')
 	print(f'wait {picosecond} picoseconds')
 except:
-	print(f'failed to bypass firewall')
+	print('failed to bypass firewall')
 	
